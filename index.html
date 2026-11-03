@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#100d19">
+  <meta name="description" content="Una aventura de Halloween hecha con cariño.">
+  <title>La casa de Halloween</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/game.js" defer></script>
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">✦</span> ARCHIVO 31 / HALLOWEEN</div>
+      <button id="sound-toggle" class="sound-toggle" type="button" aria-pressed="false">♫ <span>SONIDO: OFF</span></button>
+    </header>
+
+    <div class="progress" aria-label="Progreso de la historia"><div id="progress-fill"></div></div>
+
+    <section id="screen-start" class="screen start-screen active">
+      <p class="eyebrow">UNA NOCHE · UNA CASA · CUATRO PISTAS</p>
+      <div class="poster-art" aria-hidden="true">
+        <div class="moon"></div><span class="star star-one">✦</span><span class="star star-two">✧</span>
+        <div class="cloud cloud-one"></div><div class="cloud cloud-two"></div>
+        <div class="poster-house"><div class="roof"></div><div class="facade"><i class="window w1"></i><i class="window w2"></i><i class="front-door"></i></div></div>
+        <div class="pumpkin">🎃</div>
+      </div>
+      <h1>TRUCO O<br><span>TRATO</span></h1>
+      <p class="lead">Una pequeña aventura para <strong>Ingrid Yamilet</strong>.</p>
+      <p class="body-copy">La noche de Halloween, Ingrid salió a pedir dulces con su disfraz de payasita de McDonald's. Después de varias casas, encontró una que parecía tener la luz encendida... aunque no había nadie en la puerta.</p>
+      <button id="begin" class="button primary">COMENZAR LA NOCHE <span>→</span></button>
+      <p class="tiny">Se recomienda jugar con el sonido activado.</p>
+    </section>
+
+    <section id="screen-outside" class="screen" hidden>
+      <p class="eyebrow">23:48 · AFUERA DE UNA CASA</p>
+      <div class="scene-art exterior-art" data-art="exterior.jpg" role="img" aria-label="Exterior de una casa de noche">
+        <div class="art-fallback house-landscape"><div class="art-moon"></div><div class="art-house"><i></i><b></b><em></em></div><div class="art-tree tree-a"></div><div class="art-tree tree-b"></div></div>
+        <div class="image-caption">CALLE TRANQUILA · NOCHE DE HALLOWEEN</div>
+      </div>
+      <h2>UNA CASA MÁS...</h2>
+      <p class="body-copy">Tu bolsa de dulces ya pesa bastante. Al final de la calle encuentras una casa que no habías visto antes. Hay una luz cálida junto a la puerta.</p>
+      <div class="dialogue">—Truco o trato... ¿hola?</div>
+      <button id="knock" class="button">TOCAR LA PUERTA</button>
+    </section>
+
+    <section id="screen-door" class="screen" hidden>
+      <p class="eyebrow">SE ESCUCHA UN CLIC...</p>
+      <div class="scene-art doorway-art" data-art="puerta.jpg" role="img" aria-label="La puerta de entrada se abre lentamente">
+        <div class="art-fallback doorway-fallback"><div class="door-frame"><div class="door-panel"></div><div class="door-glow"></div></div><span class="door-spark">✧</span></div>
+        <div class="image-caption">LA PUERTA SE ABRIÓ SOLA</div>
+      </div>
+      <h2>¿HAY ALGUIEN?</h2>
+      <p class="body-copy">La puerta se abre lentamente. Desde dentro llega el sonido de una radio con estática. No parece haber nadie, pero hay algo que llama tu atención.</p>
+      <button id="enter-house" class="button primary">ENTRAR A INVESTIGAR</button>
+      <button id="stay-outside" class="button quiet">MEJOR SEGUIR MI CAMINO</button>
+    </section>
+
+    <section id="screen-hall" class="screen" hidden>
+      <p class="eyebrow">UBICACIÓN · PASILLO PRINCIPAL</p>
+      <div class="scene-art hall-art" data-art="pasillo.jpg" role="img" aria-label="Pasillo de la casa">
+        <div class="art-fallback hall-fallback"><div class="hall-perspective"><i class="hall-door hd1"></i><i class="hall-door hd2"></i><i class="hall-end"></i></div><span class="hall-lamp"></span></div>
+        <div class="image-caption">EL PASILLO ESTÁ EN SILENCIO...</div>
+      </div>
+      <h2>EL PASILLO</h2>
+      <p class="body-copy">La casa se siente extrañamente familiar. Hay cuatro puertas. En algún lugar de la casa, la radio sigue encendida.</p>
+      <div class="room-grid">
+        <button class="room-button" data-room="bano"><span>🪞</span> BAÑO</button>
+        <button class="room-button" data-room="cocina"><span>🍬</span> COCINA</button>
+        <button class="room-button" data-room="mi-cuarto"><span>📻</span> MI CUARTO</button>
+        <button class="room-button" data-room="cuarto-papas"><span>🚪</span> CUARTO DE MIS PAPÁS</button>
+      </div>
+      <p id="clue-count" class="clue-count">PISTAS ENCONTRADAS: 0 / 4</p>
+      <button id="hall-finish" class="button primary" hidden>REUNIR LAS PISTAS</button>
+    </section>
+
+    <section id="screen-room" class="screen" hidden>
+      <p id="room-eyebrow" class="eyebrow">HABITACIÓN</p>
+      <div id="room-art" class="scene-art room-art" role="img" aria-label="Ilustración de una habitación">
+        <div id="room-fallback" class="art-fallback room-fallback"><span id="room-emoji">🕯️</span></div>
+        <div id="room-caption" class="image-caption">EXAMINA LA HABITACIÓN</div>
+      </div>
+      <h2 id="room-title">HABITACIÓN</h2>
+      <p id="room-description" class="body-copy"></p>
+      <div class="dialogue" id="room-dialogue">Parece que hay algo por aquí...</div>
+      <button id="inspect-room" class="button">EXAMINAR</button>
+      <p id="room-result" class="room-result" aria-live="polite"></p>
+      <button id="back-hall" class="button quiet">← VOLVER AL PASILLO</button>
+    </section>
+
+    <section id="screen-ending" class="screen ending-screen" hidden>
+      <p class="eyebrow">TODAS LAS PISTAS CONDUCEN AQUÍ</p>
+      <div class="final-ghost" aria-hidden="true"><span>👻</span><i>♥</i></div>
+      <h2>¡ERA YO!</h2>
+      <p class="body-copy">El pequeño fantasma deja de esconderse. No quería asustarte; solo estaba preparando una sorpresa para la visitante más especial de esta noche.</p>
+      <article class="letter">
+        <p class="letter-label">UN MENSAJE PARA</p>
+        <h3 id="letter-name">Ingrid Yamilet</h3>
+        <p id="letter-text"></p>
+        <p id="letter-signature" class="signature"></p>
+      </article>
+      <button id="again" class="button primary">VOLVER A VIVIR LA NOCHE</button>
+    </section>
+
+    <footer>HECHO CON CARIÑO <span>♡</span></footer>
+  </main>
+</body>
+</html>
